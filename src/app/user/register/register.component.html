@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+  
+    <div  style="margin-left: 16px">
+      
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Username" #username>
+        <label for="password">Passwords:</label>
+        <input type="password" id="password" name="password" placeholder="Password" #password>
+  
+      <button
+        mat-raised-button
+        routerLink="/admin/users"
+        style="margin-right: 10px"
+      >
+        Cancel
+      </button>
+  
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addUser(username.value, password.value)"
+      >
+        Add new user
+      </button>
+    </div>
+  </mat-card>

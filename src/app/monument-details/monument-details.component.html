@@ -1,0 +1,35 @@
+<div *ngIf="monument" class="monument-card">
+
+    <mat-card class="monument-details">
+        <mat-card-header>
+          <div mat-card-avatar class="monument-details-avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/langfr-220px-Angular_full_color_logo.svg.png" alt="Angular Full Color Logo" /></div>
+          <mat-card-title>{{monument.nomM}}</mat-card-title>
+          <mat-card-subtitle>{{ monument.typeMonument }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ monument.proprietaire }}</mat-card-subtitle>
+        </mat-card-header>
+        <img *ngIf="monument.photoUrl" mat-card-image src= "{{ monument.photoUrl }}" alt="Photo of a monument {{ monument.nomM }}">
+        <img *ngIf="! monument.photoUrl" mat-card-image src= "../../assets/img/no-image.jpg" alt="Photo of a monument {{ monument.nomM }}">
+
+        <mat-card-content>
+          <p>
+           Longitude: {{ monument.longitude }} <br>
+            Latitude: {{ monument.latitude }} <br>
+            <a routerLink="/lieux/{{ monument.lieu?.codeInsee}}"> Lieu: {{ monument.lieu ? monument.lieu.nomCom : null }} </a> 
+            <!--If monument.lieu is defined Lieu = monument.lieu.nomCom else Lieu = null -->
+          </p>
+        </mat-card-content>
+        <mat-card-actions *ngIf="role == '[ROLE_ADMIN]'"> 
+          <button mat-button (click)="deleteMonument()">Delete</button>
+          <button mat-button (click)="modifyMonument()">Modify</button>
+        </mat-card-actions>
+    </mat-card>
+    <div class="list-celebrites">
+      <h2> List of Celebrites in: {{ monument.nomM }}</h2>
+      <mat-list >
+        <mat-list-item *ngFor="let celebrite of monument.celebrities"> <a routerLink="/celebrites/{{celebrite.numCelebrite}}"> {{ celebrite.nom}} {{celebrite.prenom}} </a> </mat-list-item>
+      </mat-list>
+
+    </div>
+    
+
+</div>

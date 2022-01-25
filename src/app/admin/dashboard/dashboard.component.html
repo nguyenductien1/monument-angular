@@ -1,0 +1,55 @@
+<h1>ADMIN DASHBOARD</h1>
+
+<div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">
+    </mat-form-field>
+    <button mat-button color="mat-green" routerLink="new/monument"><mat-icon aria-label="Add">add</mat-icon>Add new</button>
+</div>
+  
+<div class="example-container mat-elevation-z8">
+  
+    <mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- code monument Column -->
+      <ng-container matColumnDef="codeM">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Code </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.codeM}} </mat-cell>
+      </ng-container>
+  
+      <!-- nom Monument Column -->
+      <ng-container matColumnDef="nomM">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <a routerLink="/monuments/{{ row.codeM}}"> {{row.nomM}} </a>  </mat-cell>
+      </ng-container>
+  
+      <!-- Longitude Column -->
+      <ng-container matColumnDef="longitude">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Longitude </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.longitude}} </mat-cell>
+      </ng-container>
+  
+      <!-- Latitude Column -->
+      <ng-container matColumnDef="latitude">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Latitude </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.latitude"> {{row.latitude}} </mat-cell>
+      </ng-container>
+      <!-- Lieu Column -->
+      <ng-container matColumnDef="lieu">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Lieu </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.lieu"> {{row.lieu.nomCom}} </mat-cell>
+      </ng-container>
+
+       <!-- Gestion -->
+       <ng-container matColumnDef="gestion">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Gestion </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.lieu"> <button class="edit-btn"  mat-button color="primary" routerLink="edit/monument/{{row.codeM}}"><mat-icon aria-label="Edit">edit</mat-icon>Edit</button>|<button class="delete-btn" mat-button color="warn" clickable="true" (click)="deleteMonument()"><mat-icon>delete</mat-icon>Delete</button> </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

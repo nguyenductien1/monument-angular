@@ -1,0 +1,37 @@
+
+<form [formGroup]="monumentForm">
+    <mat-form-field class="form-feild-code-m form-control" appearance="fill">
+        <mat-label>Code Monument:</mat-label>
+        <input type="text" id="codeM" matInput >
+        <!--
+        <mat-error *ngIf="codeM.hasError('maxLength') && !codeM.hasError('required')">
+            Please enter a valid code Monument
+        </mat-error>
+        <mat-error *ngIf="codeM.hasError('required')">
+        Code Monument is <strong>required</strong>
+        </mat-error>
+        -->
+        
+    </mat-form-field>
+    
+    <mat-form-field class="form-feild-code-m" appearance="fill">
+        <mat-label>Nom Monument:</mat-label>
+        <input type="text" matInput formControlName="nomM">
+    </mat-form-field>
+
+    <mat-form-field class="form-feild-code-m" appearance="fill">
+        <mat-label>Longitude:</mat-label>
+        <input type="text" matInput formControlName="longitude">
+    </mat-form-field>
+
+    <mat-form-field class="form-feild-code-m" appearance="fill">
+        <mat-label>Latitude:</mat-label>
+        <input type="text" matInput formControlName="latitude">
+    </mat-form-field>
+
+    <mat-form-field class="form-feild-code-m" appearance="fill">
+        <mat-label>Lieu:</mat-label>
+        <input type="text" matInput formControlName="codeM">
+    </mat-form-field>
+
+</form>

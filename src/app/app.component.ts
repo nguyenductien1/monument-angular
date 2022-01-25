@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'monument-frontend';
+  //Logout
+  logout() {
+    if (window && window.localStorage) {
+      window.localStorage.setItem("token", "");
+      window.localStorage.setItem("username", "");
+      window.localStorage.setItem("role", "");
+    }
+  }
 }

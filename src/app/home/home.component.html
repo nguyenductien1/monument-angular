@@ -1,0 +1,49 @@
+<h1>HOME OF MONUMENT SERVICES</h1>
+<div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  
+  <div class="example-container mat-elevation-z8">
+  
+    <mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- code monument Column -->
+      <ng-container matColumnDef="codeM">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Code </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.codeM}} </mat-cell>
+      </ng-container>
+  
+      <!-- nom Monument Column -->
+      <ng-container matColumnDef="nomM">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <a routerLink="/monuments/{{ row.codeM}}"> {{row.nomM}} </a>  </mat-cell>
+      </ng-container>
+  
+      <!-- Longitude Column -->
+      <ng-container matColumnDef="longitude">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Longitude </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.longitude}} </mat-cell>
+      </ng-container>
+  
+      <!-- Latitude Column -->
+      <ng-container matColumnDef="latitude">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Latitude </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.latitude"> {{row.latitude}} </mat-cell>
+      </ng-container>
+      <!-- Lieu Column -->
+      <ng-container matColumnDef="lieu">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Lieu </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.lieu"> {{row.lieu.nomCom}} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+
+
